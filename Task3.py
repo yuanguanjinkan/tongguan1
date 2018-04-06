@@ -17,12 +17,10 @@ with open('calls.csv', 'r') as f:
     calledByBangalore = set()
 for call_elements in calls:
     if call_elements[0].startswith('(080)'):
-        if call_elements[1].startswith('140'):
-            calledByBangalore.add("140")
-        elif call_elements[1].startswith('('):
+        if call_elements[1].startswith('('):
             calledByBangalore.add(call_elements[1][int(call_elements[1].find('(')): int(call_elements[1].find(')'))+1])
-        else:
-            calledByBangalore.add(call_elements[1][0: int(call_elements[1].find(" "))+1])
+        elif call_elements[1].startswith('7') or call_elements[1].startswith('8') or call_elements[1].startswith('9'):
+            calledByBangalore.add(call_elements[1][0: 4])
 
 
 listcalledByBangalore = list(calledByBangalore)
@@ -33,12 +31,16 @@ for called_elements in listcalledByBangalore:
 """
 由班加罗尔播王班加罗尔电话占比
 """
-count_fromb_tob = 0
-for call_elements in calls:
-    if call_elements[0].startswith('(080)') and call_elements[1].startswith('(080)'):
-        count_fromb_tob+=1
 
-print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(count_fromb_tob*100/len(calls),2)))
+count_fromb_tob = 0
+count_fromb = 0
+for call_elements in calls:
+    if call_elements[0].startswith('(080)'):
+        count_fromb += 1
+    if call_elements[0].startswith('(080)') and call_elements[1].startswith('(080)'):
+        count_fromb_tob += 1
+
+print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(count_fromb_tob*100/count_fromb,2)))
 
 """
 任务3:

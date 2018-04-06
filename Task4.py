@@ -43,11 +43,13 @@ for call_elements in caller1:
         suspect_caller.add(call_elements)
 """遍历texter，如果在发送方或者接受方出现，则移除"""
 for suspect_element in suspect_caller:
-    if suspect_element not in texter1  and suspect_element not in texter2 :
+    if suspect_element not in texter1 and suspect_element not in texter2:
         real_suspect_caller.add(suspect_element)
 
-for  i  in real_suspect_caller:
-     print("These numbers could be telemarketers: {}".format(i))
+list_real_suspect_caller = list(real_suspect_caller)
+list_real_suspect_caller.sort()
+for i in list_real_suspect_caller:
+    print("These numbers could be telemarketers: {}".format(i))
 """
 任务4:
 电话公司希望辨认出可能正在用于进行电话推销的电话号码。

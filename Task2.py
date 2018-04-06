@@ -16,17 +16,15 @@ count = 1
 for calls_elements in calls:
     if callsDictionary.get(calls_elements[0]) is not None:
         callsDictionary.__setitem__(calls_elements[0], callsDictionary.get(calls_elements[0])+int(calls_elements[3]))
-        ########print("[][][][]key{}***value{}=********=".format(calls_elements[1],callsDictionary.get(calls_elements[1])))
 
-    elif callsDictionary.get(calls_elements[1]) is not None:
+    if callsDictionary.get(calls_elements[1]) is not None:
         callsDictionary.__setitem__(calls_elements[1], callsDictionary.get(calls_elements[1])+int(calls_elements[3]))
-       #####print("()()()()key{}***value{}=********=".format(calls_elements[1],callsDictionary.get(calls_elements[1])))
     else:
         callsDictionary.__setitem__(calls_elements[0], int(calls_elements[3]))
         callsDictionary.__setitem__(calls_elements[1], int(calls_elements[3]))
-####print(max(callsDictionary.items(), key=lambda x: x[1]))
-maxCallNums,maxCallLastTimes = max(callsDictionary.items(), key=lambda x: x[1])
-print("{} spent the longest time, {} seconds, on the phone during".format(maxCallNums,maxCallLastTimes))
+
+maxCallNums, maxCallLastTimes = max(callsDictionary.items(), key=lambda x: x[1])
+print("{} spent the longest time, {} seconds, on the phone during".format(maxCallNums, maxCallLastTimes))
 
 
 """
