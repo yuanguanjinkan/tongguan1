@@ -35,21 +35,14 @@ for call_elements in calls:
     caller2.add(call_elements[1])
 
 for call_elements in texts:
-    texter1.add(call_elements[0])
-    texter2.add(call_elements[1])
+    caller2.add(call_elements[0])
+    caller2.add(call_elements[1])
 
-for call_elements in caller1:
-    if call_elements not in caller2:
-        suspect_caller.add(call_elements)
-"""遍历texter，如果在发送方或者接受方出现，则移除"""
-for suspect_element in suspect_caller:
-    if suspect_element not in texter1 and suspect_element not in texter2:
-        real_suspect_caller.add(suspect_element)
 
-list_real_suspect_caller = list(real_suspect_caller)
-list_real_suspect_caller.sort()
-for i in list_real_suspect_caller:
-    print("These numbers could be telemarketers: {}".format(i))
+"""caller1 减去 callere2 当中的集合，剩下的未接收电话，发送短信，接受短信的号码"""
+caller1 -= caller2
+
+print("These numbers could be telemarketers: \n"+"\n".join(sorted(caller1)))
 """
 任务4:
 电话公司希望辨认出可能正在用于进行电话推销的电话号码。

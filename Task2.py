@@ -14,12 +14,17 @@ with open('calls.csv', 'r') as f:
 callsDictionary = {}
 count = 1
 for calls_elements in calls:
+    flag = False
+
     if callsDictionary.get(calls_elements[0]) is not None:
         callsDictionary.__setitem__(calls_elements[0], callsDictionary.get(calls_elements[0])+int(calls_elements[3]))
+        flag = True
 
     if callsDictionary.get(calls_elements[1]) is not None:
         callsDictionary.__setitem__(calls_elements[1], callsDictionary.get(calls_elements[1])+int(calls_elements[3]))
-    else:
+        flag = True
+
+    if not flag:
         callsDictionary.__setitem__(calls_elements[0], int(calls_elements[3]))
         callsDictionary.__setitem__(calls_elements[1], int(calls_elements[3]))
 
